@@ -26,7 +26,7 @@ from discord import app_commands
 from discord.ext import commands
 from datetime import datetime, timezone
 
-class MyView(discord.ui.View)
+class MyView(discord.ui.View):
     @discord.ui.button(Label="Get role", style=discord.ButtonStyle.primary)
     async def button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message("You clicked the button!", ephemeral=True)
