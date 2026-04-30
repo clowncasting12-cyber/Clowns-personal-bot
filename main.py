@@ -223,4 +223,19 @@ class ScrimView(discord.ui.View):
         await self.refresh(interaction)
         await interaction.followup.send("✅ Result logged: **🔴 Team 2** wins!", ephemeral=True)
 
+@bot.command(name="scrim")
+@is_mod()
+async def scrim(ctx, team_size: int):
+    if team_size not in (3, 4):
+        await ctx.send("❌ Invalid team size. Use `3` for 3v3 or `4` for 4v4.")
+        return
+
+    view = ScrimView(team_size=team_size, creator_id=ctx.author.id)
+    embed = build_scrim_embed(team_size, [], [], None, None, None)
+    await ctx.send(
+        content="@here 🎮 A scrim is starting! Click below to join.",
+        embed=embed,
+        view=view
+    )
+
 bot.run(os.getenv("DISCORD_TOKEN"))
