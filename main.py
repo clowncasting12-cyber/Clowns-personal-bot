@@ -224,7 +224,6 @@ class ScrimView(discord.ui.View):
         await interaction.followup.send("✅ Result logged: **🔴 Team 2** wins!", ephemeral=True)
 
 @bot.command(name="scrim")
-@is_mod()
 async def scrim(ctx, team_size: int):
     if team_size not in (3, 4):
         await ctx.send("❌ Invalid team size. Use `3` for 3v3 or `4` for 4v4.")
